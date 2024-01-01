@@ -1,0 +1,22 @@
+<h1>Home#index</h1>
+<p>Find me in app/views/home/index.html.erb</p>
+
+
+<%# to do : 
+    recuperer le nb de ventes, 
+    recuperer le nb de ventes par ligue (collection)
+    recuperer la marge par ligue
+    recuperer la marge nette 
+
+%>
+
+<% if @products.any? %>
+    <% @products.each do |product| %>
+        <p>
+            <%= product.title %>
+            <%= product.status %>
+        </p>
+    <% end %>
+<% else %>
+ <p>No products found.</p>
+<% end %>
