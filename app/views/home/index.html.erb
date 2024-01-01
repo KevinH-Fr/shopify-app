@@ -1,6 +1,4 @@
 <h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
 
 <%# to do : 
     recuperer le nb de ventes, 
@@ -10,13 +8,51 @@
 
 %>
 
-<% if @products.any? %>
-    <% @products.each do |product| %>
-        <p>
-            <%= product.title %>
-            <%= product.status %>
-        </p>
-    <% end %>
-<% else %>
- <p>No products found.</p>
-<% end %>
+
+
+<h2>Produits</h2>
+
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+            <th>Title</th>
+            <th>Status</th>
+            <th>Prix</th>
+            <th>Images</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if @products.any? %>
+            <% @products.each do |product| %>
+                <tr>
+                <td><%= product.title %></td>
+                <td><%= product.status %></td>
+                <td><%= product.variants.first.price %></td>
+                <td>
+                    <% if product.images.any? %>
+                    <div class="d-flex">
+                        <img src="<%= product.images.first.src %>" alt="Product Image" class="img-thumbnail w-50">
+                    </div>
+                    <% else %>
+                    No images found for this product.
+                    <% end %>
+                </td>
+                </tr>
+            <% end %>
+            <% else %>
+            <tr>
+                <td colspan="3">No products found.</td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>
+
+
+<%= @orders %>
+
+<hr>
+
+
+<%= link_to "Shop", "http://shop.racemeifyoucan.com", target: "_blank", class: "btn btn-primary" %>

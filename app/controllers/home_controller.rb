@@ -3,5 +3,8 @@ class HomeController < ApplicationController
 
     @products = ShopifyAPI::Product.all
 
+    @orders = ShopifyAPI::Order.all
+
+
   end
 end
